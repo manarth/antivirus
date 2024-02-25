@@ -1,0 +1,17 @@
+---
+antivirus.admin_form:
+  path: '/admin/config/media/antivirus'
+  defaults:
+    _form: Drupal\antivirus\Form\AntiVirusConfigForm
+    _title: 'Antivirus configuration'
+  requirements:
+    _permission: 'administer antivirus'
+
+antivirus.admin.add_scanner:
+  path: '/admin/config/media/antivirus/add/:plugin'
+  defaults:
+    _form: Drupal\antivirus\Form\ScannerConfigForm
+    _title: 'Add scanner'
+  requirements:
+    _permission: 'administer antivirus'
+

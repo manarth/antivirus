@@ -1,0 +1,5 @@
+name: Antivirus
+description: Scan uploaded files and media for viruses.
+type: module
+core_version_requirement: ^10.2 || ^11
+php: 8.1

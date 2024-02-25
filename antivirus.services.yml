@@ -1,0 +1,37 @@
+---
+services:
+
+  config.antivirus.settings:
+    class: Drupal\Core\Config\Config
+    factory: ['@config.factory', 'get']
+    arguments:
+      - 'antivirus.settings'
+
+  config.antivirus.scanners:
+    class: Drupal\Core\Config\Config
+    factory: ['@config.factory', 'get']
+    arguments:
+      - 'antivirus.scanners'
+
+  antivirus.event_subscriber.file_validation_event:
+    class: Drupal\antivirus\EventSubscriber\FileValidationEventSubscriber
+    arguments:
+      - '@antivirus.scan_manager'
+      - '@config.antivirus.settings'
+    tags:
+      - { name: 'event_subscriber' }
+
+  antivirus.scan_manager:
+    class: Drupal\antivirus\Service\ScanManager
+    arguments:
+      - '@plugin.manager.antivirus'
+      - '@event_dispatcher'
+      - '@config.antivirus.scanners'
+
+  logger.channel.antivirus:
+    parent: logger.channel_base
+    arguments: ['AntiVirus']
+
+  plugin.manager.antivirus:
+    class: Drupal\antivirus\PluginDefinition\AntiVirusPluginManager
+    parent: default_plugin_manager

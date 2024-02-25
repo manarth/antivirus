@@ -1,0 +1,6 @@
+---
+antivirus.admin_form:
+  title: 'Antivirus'
+  parent: system.admin_config_media
+  description: 'Configure antivirus settings.'
+  route_name: antivirus.admin_form
