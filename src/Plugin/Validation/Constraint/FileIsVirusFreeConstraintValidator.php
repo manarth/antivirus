@@ -6,9 +6,9 @@ use Drupal\antivirus\ScanOutcome;
 use Drupal\antivirus\Service\ScanManager;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\file\Plugin\Validation\Constraint\BaseFileConstraintValidator;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Constraint;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Validator for files subject to an antivirus scan.

@@ -27,7 +27,9 @@ class AntiVirusPluginManager extends DefaultPluginManager implements AntiVirusPl
    */
   const PLUGIN_ATTRIBUTE = AntiVirus::class;
 
-  // Plugin manager
+  /**
+   * {@inheritdoc}
+   */
   public function __construct(
     \Traversable $namespaces,
     CacheBackendInterface $cache_backend,

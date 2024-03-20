@@ -1,2 +1,7 @@
 ---
 # Create "Add Scanner Plugin" link on the admin form.
+antivirus.scanners.add:
+  route_name: antivirus.admin.add_scanner_page
+  title: 'Add scanner'
+  appears_on:
+    - entity.antivirus_scanners.collection

@@ -35,3 +35,10 @@ services:
   plugin.manager.antivirus:
     class: Drupal\antivirus\PluginDefinition\AntiVirusPluginManager
     parent: default_plugin_manager
+
+  antivirus.plugin.param_converter:
+    class: Drupal\antivirus\Routing\ParamConverter\AntiVirusPluginParamConverter
+    arguments:
+      - '@plugin.manager.antivirus'
+    tags:
+      - { name: paramconverter }

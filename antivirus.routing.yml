@@ -1,5 +1,5 @@
 ---
-antivirus.admin_form:
+antivirus.admin:
   path: '/admin/config/media/antivirus'
   defaults:
     _form: Drupal\antivirus\Form\AntiVirusConfigForm
@@ -7,11 +7,46 @@ antivirus.admin_form:
   requirements:
     _permission: 'administer antivirus'
 
-antivirus.admin.add_scanner:
-  path: '/admin/config/media/antivirus/add/:plugin'
+entity.antivirus_scanners.collection:
+  path: '/admin/config/media/antivirus/scanners'
   defaults:
-    _form: Drupal\antivirus\Form\ScannerConfigForm
+    _entity_list: 'antivirus_scanner'
+    _title: 'Antivirus scanners'
+  requirements:
+    _permission: 'administer antivirus'
+
+antivirus.admin.add_scanner_page:
+  path: '/admin/config/media/antivirus/scanners/add'
+  defaults:
+    _controller: Drupal\antivirus\Controller\AntiVirusController::addScannerPage
     _title: 'Add scanner'
   requirements:
     _permission: 'administer antivirus'
 
+antivirus.admin.add_scanner:
+  path: '/admin/config/media/antivirus/scanners/add/{plugin}'
+  defaults:
+    _entity_form: 'antivirus_scanner.add'
+    _title: 'Add scanner'
+  requirements:
+    _permission: 'administer antivirus'
+  options:
+    parameters:
+      plugin:
+        type: 'antivirus.plugin'
+
+entity.antivirus_scanner.edit_form:
+  path: '/admin/config/media/antivirus/scanners/edit/{antivirus_scanner}'
+  defaults:
+    _entity_form: 'antivirus_scanner.edit'
+    _title: 'Edit scanner'
+  requirements:
+    _permission: 'administer antivirus'
+
+entity.antivirus_scanner.delete_form:
+  path: '/admin/config/media/antivirus/scanners/delete/{antivirus_scanner}'
+  defaults:
+    _entity_form: 'antivirus_scanner.delete'
+    _title: 'Delete scanner'
+  requirements:
+    _permission: 'administer antivirus'

@@ -18,7 +18,7 @@ class FileValidationEventSubscriber implements EventSubscriberInterface {
    * @param \Drupal\antivirus\Service\ScanManager $scanManager
    *   The service which performs pre-scan checks and scans.
    * @param \Drupal\Core\Config\Config $config
-   *   The configuration provided by `antivirus.settings`,
+   *   The configuration provided by `antivirus.settings`.
    */
   public function __construct(protected ScanManager $scanManager,
                               protected Config $config) {

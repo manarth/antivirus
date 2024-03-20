@@ -10,10 +10,15 @@ use Symfony\Contracts\EventDispatcher\Event;
  */
 class AntiVirusPostScanEvent extends Event {
 
+  /**
+   * Results of the scan.
+   *
+   * @var mixed
+   */
   protected $results;
 
   /**
-   * Constructor
+   * Constructor.
    *
    * @param \Drupal\file\FileInterface $file
    *   The file to be scanned.

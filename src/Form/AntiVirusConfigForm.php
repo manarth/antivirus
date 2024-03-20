@@ -23,7 +23,6 @@ class AntiVirusConfigForm extends ConfigFormBase {
   protected function getEditableConfigNames() {
     return [
       'antivirus.settings',
-      'antivirus.scanners',
     ];
   }
 
@@ -32,11 +31,11 @@ class AntiVirusConfigForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
 
-    $form['enabled'] = array(
+    $form['enabled'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable antivirus scanning'),
-      '#config_target' => 'antivirus.settings:enabled'
-    );
+      '#config_target' => 'antivirus.settings:enabled',
+    ];
 
     return parent::buildForm($form, $form_state);
   }

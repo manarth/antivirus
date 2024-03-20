@@ -18,7 +18,7 @@ class AntiVirusPreScanEvent extends Event {
   protected bool $performScan = TRUE;
 
   /**
-   * Constructor
+   * Constructor.
    *
    * @param \Drupal\file\FileInterface $file
    *   The file to be scanned.

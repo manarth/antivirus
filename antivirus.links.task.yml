@@ -1,0 +1,10 @@
+---
+antivirus.admin:
+  route_name: antivirus.admin
+  title: 'Configuration'
+  base_route: antivirus.admin
+
+entity.antivirus_scanners.collection:
+  route_name: entity.antivirus_scanners.collection
+  title: 'Scanners'
+  base_route: antivirus.admin
