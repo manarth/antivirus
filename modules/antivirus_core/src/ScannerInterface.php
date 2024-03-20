@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\antivirus;
+namespace Drupal\antivirus_core;
 
 use Drupal\file\FileInterface;
 
@@ -15,7 +15,7 @@ interface ScannerInterface {
    * @param \Drupal\file\FileInterface $file
    *   The file to scan.
    *
-   * @return \Drupal\antivirus\ScanResultInterface
+   * @return \Drupal\antivirus_core\ScanResultInterface
    *   The result of the scan.
    */
   public function scan(FileInterface $file) : ScanResultInterface;

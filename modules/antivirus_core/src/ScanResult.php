@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\antivirus;
+namespace Drupal\antivirus_core;
 
 /**
  * Result of an antivirus scan for a single file.
@@ -31,7 +31,7 @@ class ScanResult implements ScanResultInterface {
   /**
    * Constructor.
    *
-   * @param \Drupal\antivirus\ScanOutcome $outcome
+   * @param \Drupal\antivirus_core\ScanOutcome $outcome
    *   The outcome of the scan.
    */
   public function __construct(protected readonly ScanOutcome $outcome) {

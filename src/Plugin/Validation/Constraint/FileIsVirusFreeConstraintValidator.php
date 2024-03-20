@@ -2,7 +2,7 @@
 
 namespace Drupal\antivirus\Plugin\Validation\Constraint;
 
-use Drupal\antivirus\ScanOutcome;
+use Drupal\antivirus_core\ScanOutcome;
 use Drupal\antivirus\Service\ScanManager;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\file\Plugin\Validation\Constraint\BaseFileConstraintValidator;
@@ -45,7 +45,7 @@ class FileIsVirusFreeConstraintValidator extends BaseFileConstraintValidator imp
 
     $results = $this->scanManager->scan($file);
     foreach ($results as $result) {
-      /** @var \Drupal\antivirus\ScanResultInterface $result */
+      /** @var \Drupal\antivirus_core\ScanResultInterface $result */
       switch ($result->getOutcome()) {
         case ScanOutcome::INFECTED:
           $this->context->addViolation($constraint->fileIsInfected);

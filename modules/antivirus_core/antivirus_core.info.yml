@@ -1,0 +1,7 @@
+name: Antivirus core
+description: Core components of the Antivirus module.
+type: module
+core_version_requirement: ^10.2 || ^11
+php: 8.1
+package: Antivirus
+hidden: true

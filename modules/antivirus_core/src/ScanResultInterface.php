@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\antivirus;
+namespace Drupal\antivirus_core;
 
 /**
  * Result of an antivirus scan for a single file.
@@ -10,7 +10,7 @@ interface ScanResultInterface {
   /**
    * Get the outcome of the scan.
    *
-   * @return \Drupal\antivirus\ScanOutcome
+   * @return \Drupal\antivirus_core\ScanOutcome
    *   An enum determining whether the file was infected, etc.
    */
   public function getOutcome() : ScanOutcome;

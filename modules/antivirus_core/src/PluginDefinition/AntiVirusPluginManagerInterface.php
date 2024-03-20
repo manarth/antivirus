@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\antivirus\PluginDefinition;
+namespace Drupal\antivirus_core\PluginDefinition;
 
 use Drupal\Component\Plugin\PluginManagerInterface;
 

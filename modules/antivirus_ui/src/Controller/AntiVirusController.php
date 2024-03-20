@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\antivirus\Controller;
+namespace Drupal\antivirus_ui\Controller;
 
-use Drupal\antivirus\PluginDefinition\AntiVirusPluginManagerInterface;
+use Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManagerInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -15,7 +15,7 @@ class AntiVirusController extends ControllerBase {
   /**
    * Constructor.
    *
-   * @param \Drupal\antivirus\PluginDefinition\AntiVirusPluginManagerInterface $pluginManager
+   * @param \Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManagerInterface $pluginManager
    *   The plugin manager for anti-virus plugins.
    */
   public function __construct(protected AntiVirusPluginManagerInterface $pluginManager) {

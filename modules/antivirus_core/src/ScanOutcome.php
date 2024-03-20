@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\antivirus;
+namespace Drupal\antivirus_core;
 
 /**
  * Outcome of an antivirus scan.

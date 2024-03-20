@@ -1,10 +1,12 @@
 <?php
 
-namespace Drupal\antivirus\Entity;
+namespace Drupal\antivirus_core\Entity;
 
-use Drupal\antivirus\PluginDefinition\AntiVirusPluginInterface;
-use Drupal\antivirus\PluginDefinition\AntiVirusPluginManagerInterface;
+use Drupal\antivirus_core\PluginDefinition\AntiVirusPluginInterface;
+use Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManagerInterface;
+use Drupal\antivirus_core\ScanResultInterface;
 use Drupal\Core\Config\Entity\ConfigEntityBase;
+use Drupal\file\FileInterface;
 
 /**
  * An anti-virus scanner entity holds the configuration for a scanner instance.
@@ -13,11 +15,11 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *   id = "antivirus_scanner",
  *   label = @Translation("Antivirus scanner"),
  *   handlers = {
- *     "list_builder" = "Drupal\antivirus\Controller\AntiVirusScannerListBuilder",
+ *     "list_builder" = "Drupal\antivirus_ui\Controller\AntiVirusScannerListBuilder",
  *     "form" = {
- *       "add"    = "Drupal\antivirus\Form\AntiVirusScannerForm",
- *       "edit"   = "Drupal\antivirus\Form\AntiVirusScannerForm",
- *       "delete" = "Drupal\antivirus\Form\AntiVirusScannerDeleteForm",
+ *       "add"    = "Drupal\antivirus_ui\Form\AntiVirusScannerForm",
+ *       "edit"   = "Drupal\antivirus_ui\Form\AntiVirusScannerForm",
+ *       "delete" = "Drupal\antivirus_ui\Form\AntiVirusScannerDeleteForm",
  *     }
  *   },
  *   config_prefix = "antivirus",
@@ -80,7 +82,7 @@ class AntiVirusScanner extends ConfigEntityBase implements AntivirusScannerInter
   /**
    * The anti-virus plugin manager service.
    *
-   * @var \Drupal\antivirus\PluginDefinition\AntiVirusPluginManagerInterface
+   * @var \Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManagerInterface
    */
   protected AntiVirusPluginManagerInterface $pluginManager;
 
@@ -129,9 +131,18 @@ class AntiVirusScanner extends ConfigEntityBase implements AntivirusScannerInter
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function scan(FileInterface $file) : ScanResultInterface {
+    return $this
+      ->scanner()
+      ->scan($file);
+  }
+
+  /**
    * Get the plugin manager for anti-virus plugins.
    *
-   * @return \Drupal\antivirus\PluginDefinition\AntiVirusPluginManagerInterface
+   * @return \Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManagerInterface
    *   The plugin manager service.
    */
   protected function pluginManager() : AntiVirusPluginManagerInterface {

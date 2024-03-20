@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\antivirus\Form;
+namespace Drupal\antivirus_ui\Form;
 
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;

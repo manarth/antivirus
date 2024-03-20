@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\antivirus\Controller;
+namespace Drupal\antivirus_ui\Controller;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
@@ -26,7 +26,7 @@ class AntiVirusScannerListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity) {
-    /** @var \Drupal\antivirus\Entity\AntiVirusScannerInterface $entity */
+    /** @var \Drupal\antivirus_core\Entity\AntiVirusScannerInterface $entity */
     $row['id']          = $entity->id();
     $row['label']       = $entity->label();
     $row['description'] = $entity->description();

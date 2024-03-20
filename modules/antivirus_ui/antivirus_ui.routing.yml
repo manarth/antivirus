@@ -2,7 +2,7 @@
 antivirus.admin:
   path: '/admin/config/media/antivirus'
   defaults:
-    _form: Drupal\antivirus\Form\AntiVirusConfigForm
+    _form: Drupal\antivirus_ui\Form\AntiVirusConfigForm
     _title: 'Antivirus configuration'
   requirements:
     _permission: 'administer antivirus'
@@ -18,7 +18,7 @@ entity.antivirus_scanners.collection:
 antivirus.admin.add_scanner_page:
   path: '/admin/config/media/antivirus/scanners/add'
   defaults:
-    _controller: Drupal\antivirus\Controller\AntiVirusController::addScannerPage
+    _controller: Drupal\antivirus_ui\Controller\AntiVirusController::addScannerPage
     _title: 'Add scanner'
   requirements:
     _permission: 'administer antivirus'

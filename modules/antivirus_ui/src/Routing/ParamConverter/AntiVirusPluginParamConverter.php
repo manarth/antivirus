@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\antivirus\Routing\ParamConverter;
+namespace Drupal\antivirus_ui\Routing\ParamConverter;
 
-use Drupal\antivirus\PluginDefinition\AntiVirusPluginManagerInterface;
+use Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManagerInterface;
 use Drupal\Core\ParamConverter\ParamConverterInterface;
 use Symfony\Component\Routing\Route;
 
@@ -14,7 +14,7 @@ class AntiVirusPluginParamConverter implements ParamConverterInterface {
   /**
    * Constructor.
    *
-   * @param \Drupal\antivirus\PluginDefinition\AntiVirusPluginManagerInterface $pluginManager
+   * @param \Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManagerInterface $pluginManager
    *   The plugin manager for antivirus plugins.
    */
   public function __construct(protected AntiVirusPluginManagerInterface $pluginManager) {

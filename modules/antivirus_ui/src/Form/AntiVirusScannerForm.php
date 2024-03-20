@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\antivirus\Form;
+namespace Drupal\antivirus_ui\Form;
 
-use Drupal\antivirus\PluginDefinition\AntiVirusPluginInterface;
+use Drupal\antivirus_core\PluginDefinition\AntiVirusPluginInterface;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Form\SubformState;
@@ -16,7 +16,7 @@ class AntiVirusScannerForm extends EntityForm {
   /**
    * The entity being used by this form.
    *
-   * @var \Drupal\antivirus\Entity\AntiVirusScannerInterface
+   * @var \Drupal\antivirus_core\Entity\AntiVirusScannerInterface
    */
   protected $entity;
 
@@ -26,10 +26,10 @@ class AntiVirusScannerForm extends EntityForm {
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
 
-    /** @var \Drupal\antivirus\Entity\AntiVirusScannerInterface */
+    /** @var \Drupal\antivirus_core\Entity\AntiVirusScannerInterface */
     $entity = $this->entity;
 
-    /** @var \Drupal\antivirus\PluginDefinition\AntiVirusPluginInterface */
+    /** @var \Drupal\antivirus_core\PluginDefinition\AntiVirusPluginInterface */
     $plugin = $this->plugin();
 
     $form['plugin'] = [
@@ -99,7 +99,7 @@ class AntiVirusScannerForm extends EntityForm {
   /**
    * Get the plugin instance.
    *
-   * @return \Drupal\antivirus\PluginDefinition\AntiVirusPluginInterface
+   * @return \Drupal\antivirus_core\PluginDefinition\AntiVirusPluginInterface
    *   For existing entities, this is the configured plugin instance.
    *   For new entities, this will be a new instantiation of the plugin.
    */

@@ -1,8 +1,8 @@
 <?php
 
-namespace Drupal\antivirus\PluginDefinition;
+namespace Drupal\antivirus_core\PluginDefinition;
 
-use Drupal\antivirus\Attribute\AntiVirus;
+use Drupal\antivirus_core\Attribute\AntiVirus;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;

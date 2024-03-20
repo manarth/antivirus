@@ -3,8 +3,8 @@
 namespace Drupal\antivirus\Service;
 
 use Drupal\antivirus\Event\AntiVirusPreScanEvent;
-use Drupal\antivirus\PluginDefinition\AntiVirusPluginManagerInterface;
 use Drupal\Core\Config\Config;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\file\FileInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -17,18 +17,29 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class ScanManager {
 
   /**
+   * All defined scanner entities.
+   *
+   * @var \Drupal\antivirus\PluginDefinition\AntiVirusPluginManagerInterface[]
+   */
+  protected readonly array $scanners;
+
+  /**
    * Constructor.
    *
-   * @param \Drupal\antivirus\PluginDefinition\AntiVirusPluginManagerInterface $pluginManager
-   *   The plugin manager service for AntiVirus plugins.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $etm
+   *   The entity-type manager service.
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $eventDispatcher
    *   The event dispatcher service.
    * @param \Drupal\Core\Config\Config $config
-   *   The list of configured scanners.
+   *   The config for the antivirus module.
    */
-  public function __construct(protected AntiVirusPluginManagerInterface $pluginManager,
-                              protected EventDispatcherInterface $eventDispatcher,
-                              protected Config $config) {
+  public function __construct(
+    EntityTypeManagerInterface $etm,
+    protected EventDispatcherInterface $eventDispatcher,
+    protected Config $config) {
+    $this->scanners = $etm
+      ->getStorage('antivirus_scanner')
+      ->loadMultiple();
   }
 
   /**
@@ -51,31 +62,28 @@ class ScanManager {
    *
    * @param \Drupal\file\FileInterface $file
    *   The file to be scanned.
+   *
+   * @return \Drupal\antivirus_core\ScanResultInterface[]
+   *   Results from each of the scans performed, indexed by the scanner entity
+   *   ID.
    */
-  public function scan(FileInterface $file) {
+  public function scan(FileInterface $file) : array {
     $results = [];
     foreach ($this->getScanners() as $scanner) {
-      $results[] = $scanner->scan($file);
+      $results[$scanner->id()] = $scanner->scan($file);
     }
 
     return $results;
   }
 
   /**
-   * Get the scanner plugin instances.
+   * Get the scanner entities.
    *
-   * @return \Drupal\antivirus\PluginDefinition\AntiVirusPluginInterface[]
-   *   The instantiated plugin definitions using the `antivirus.scanners`
-   *   config definition.
+   * @return \Drupal\antivirus_core\Entity\AntiVirusScannerInterface[]
+   *   Each of the scanner entities.
    */
   public function getScanners() : array {
-    $scanners = [];
-    foreach ($this->config->get() as $definition) {
-      $scanners[] = $this
-        ->pluginManager
-        ->createInstance($definition['provider'], $definition['configuration'] ?? []);
-    }
-    return $scanners;
+    return $this->scanners;
   }
 
 }

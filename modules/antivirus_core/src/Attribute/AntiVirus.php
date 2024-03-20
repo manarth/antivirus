@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\antivirus\Attribute;
+namespace Drupal\antivirus_core\Attribute;
 
 use Drupal\Component\Plugin\Attribute\Plugin;
 

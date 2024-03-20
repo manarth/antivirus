@@ -1,0 +1,6 @@
+---
+services:
+
+  plugin.manager.antivirus:
+    class: Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManager
+    parent: default_plugin_manager

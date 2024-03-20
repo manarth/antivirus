@@ -1,10 +1,12 @@
 <?php
 
-namespace Drupal\antivirus\Entity;
+namespace Drupal\antivirus_core\Entity;
 
-use Drupal\antivirus\PluginDefinition\AntiVirusPluginInterface;
-use Drupal\antivirus\PluginDefinition\AntiVirusPluginManagerInterface;
+use Drupal\antivirus_core\PluginDefinition\AntiVirusPluginInterface;
+use Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManagerInterface;
+use Drupal\antivirus_core\ScanResultInterface;
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
+use Drupal\file\FileInterface;
 
 /**
  * Scanner entities describe the configuration for an antivirus scanner.
@@ -38,7 +40,7 @@ interface AntiVirusScannerInterface extends ConfigEntityInterface {
   /**
    * Alias for AntiVirusScannerInterface::getPluginInstance().
    *
-   * @return \Drupal\antivirus\PluginDefinition\AntiVirusPluginInterface
+   * @return \Drupal\antivirus_core\PluginDefinition\AntiVirusPluginInterface
    *   An anti-virus plugin instance.
    */
   public function scanner() : AntiVirusPluginInterface;
@@ -46,7 +48,7 @@ interface AntiVirusScannerInterface extends ConfigEntityInterface {
   /**
    * Create or fetch an instance of the anti-virus plugin used by this scanner.
    *
-   * @return \Drupal\antivirus\PluginDefinition\AntiVirusPluginInterface
+   * @return \Drupal\antivirus_core\PluginDefinition\AntiVirusPluginInterface
    *   An anti-virus plugin instance.
    */
   public function getPluginInstance() : AntiVirusPluginInterface;
@@ -54,9 +56,20 @@ interface AntiVirusScannerInterface extends ConfigEntityInterface {
   /**
    * Set or replace the plugin manager for anti-virus plugins.
    *
-   * @param \Drupal\antivirus\PluginDefinition\AntiVirusPluginManagerInterface $plugin_manager
+   * @param \Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManagerInterface $plugin_manager
    *   The anti-virus plugin manager.
    */
   public function setPluginManager(AntiVirusPluginManagerInterface $plugin_manager) : void;
+
+  /**
+   * Scan a file.
+   *
+   * @param \Drupal\file\FileInterface $file
+   *   The file to scan.
+   *
+   * @return \Drupal\antivirus_core\ScanResultInterface
+   *   The result of the scan.
+   */
+  public function scan(FileInterface $file) : ScanResultInterface;
 
 }
