@@ -6,3 +6,9 @@ antivirus.settings:
     enabled:
       type: boolean
       label: 'Enabled'
+    require_scan:
+      type: boolean
+      label: 'File must be scanned'
+    require_clean:
+      type: boolean
+      label: 'File must not be infected'

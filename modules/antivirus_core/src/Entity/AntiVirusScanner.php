@@ -42,7 +42,8 @@ use Drupal\file\FileInterface;
  *   }
  * )
  */
-class AntiVirusScanner extends ConfigEntityBase implements AntivirusScannerInterface {
+class AntiVirusScanner extends ConfigEntityBase implements AntivirusScannerInterface
+{
 
   /**
    * The scanner ID.

@@ -18,6 +18,7 @@ class AntiVirusScannerListBuilder extends EntityListBuilder {
     $header['label']       = $this->t('Label');
     $header['description'] = $this->t('Description');
     $header['plugin']      = $this->t('Scanner plugin');
+    $header['available']   = $this->t('Available');
 
     return $header + parent::buildHeader();
   }
@@ -31,6 +32,7 @@ class AntiVirusScannerListBuilder extends EntityListBuilder {
     $row['label']       = $entity->label();
     $row['description'] = $entity->description();
     $row['plugin']      = $entity->getPluginInstance()->getPluginDefinition()['admin_label'];
+    $row['available']   = $entity->getPluginInstance()->isAvailable() ? 'Y' : 'N';
     return $row + parent::buildRow($entity);
   }
 

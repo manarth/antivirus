@@ -37,9 +37,11 @@ class AntiVirusScannerDeleteForm extends EntityConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Do you want to delete the scanner %id?', [
-      '%id' => $this->entity->label(),
-    ]);
+    return $this->t(
+      'Do you want to delete the scanner %id?', [
+        '%id' => $this->entity->label(),
+      ]
+    );
   }
 
 }

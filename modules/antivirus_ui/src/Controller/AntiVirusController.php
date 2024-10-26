@@ -2,9 +2,9 @@
 
 namespace Drupal\antivirus_ui\Controller;
 
-use Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManagerInterface;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Url;
+use Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -48,9 +48,11 @@ class AntiVirusController extends ControllerBase {
     foreach ($this->pluginManager->getDefinitions() as $definition) {
       $build['links']['#links'][] = [
         'title' => $definition['admin_label'],
-        'url' => Url::fromRoute('antivirus.admin.add_scanner', [
-          'plugin' => $definition['id'],
-        ]),
+        'url' => Url::fromRoute(
+          'antivirus.admin.add_scanner', [
+            'plugin' => $definition['id'],
+          ]
+        ),
       ];
     }
     return $build;

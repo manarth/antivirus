@@ -12,5 +12,6 @@ use Drupal\Component\Plugin\PluginInspectionInterface;
 interface AntiVirusPluginInterface extends
   ScannerInterface,
   DerivativeInspectionInterface,
-  PluginInspectionInterface {
+  PluginInspectionInterface,
+{
 }

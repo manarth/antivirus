@@ -1,2 +1,4 @@
 ---
 enabled: true
+require_scan: true
+require_clean: true

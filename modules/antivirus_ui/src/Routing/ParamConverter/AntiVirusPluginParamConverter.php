@@ -2,8 +2,8 @@
 
 namespace Drupal\antivirus_ui\Routing\ParamConverter;
 
-use Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManagerInterface;
 use Drupal\Core\ParamConverter\ParamConverterInterface;
+use Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManagerInterface;
 use Symfony\Component\Routing\Route;
 
 /**

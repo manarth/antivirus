@@ -4,3 +4,12 @@ services:
   plugin.manager.antivirus:
     class: Drupal\antivirus_core\PluginDefinition\AntiVirusPluginManager
     parent: default_plugin_manager
+
+  antivirus_core.scanner_factory:
+    class: Drupal\antivirus_core\Service\AntiVirusScannerFactory
+    arguments:
+      - '@entity_type.manager'
+
+  antivirus_core.scanners:
+    class: Drupal\antivirus_core\Collection\ScannersList
+    factory: ['@antivirus_core.scanner_factory', 'getScanners']

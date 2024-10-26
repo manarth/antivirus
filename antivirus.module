@@ -1,0 +1,32 @@
+<?php
+
+/**
+ * @file
+ * Hooks for the AntiVirus module.
+ */
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function antivirus_entity_type_alter(array &$entity_types) {
+  $config = \Drupal::service('config.antivirus.settings');
+  if ($config->get('enabled')) {
+    $requireScan = $config->get('require_scan');
+    $requireClean = $config->get('require_clean');
+
+    // Add only one constraint, to avoid duplicating the scans.
+    switch (TRUE) {
+      case $requireScan && $requireClean:
+        $entity_types['file']->addConstraint('FileIsClean');
+        break;
+
+      case $requireClean:
+        $entity_types['file']->addConstraint('FileIsNotInfected');
+        break;
+
+      case $requireScan:
+        $entity_types['file']->addConstraint('FileIsScanned');
+        break;
+    }
+  }
+}

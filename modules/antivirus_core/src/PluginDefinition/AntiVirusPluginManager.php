@@ -13,17 +13,17 @@ use Drupal\Core\Plugin\DefaultPluginManager;
 class AntiVirusPluginManager extends DefaultPluginManager implements AntiVirusPluginManagerInterface {
 
   /**
-   * Path where AntiVirus plugins should be stored.
+   * Path where the plugins should be stored.
    */
   const PLUGIN_SUBDIR = 'Plugin/AntiVirus';
 
   /**
-   * Interface to be implemented by all AntiVirus plugins.
+   * Interface to be implemented by all plugins of this type.
    */
   const PLUGIN_INTERFACE = AntiVirusPluginInterface::class;
 
   /**
-   * Attribute which identifies an AntiVirus plugin.
+   * Attribute which identifies a plugin.
    */
   const PLUGIN_ATTRIBUTE = AntiVirus::class;
 
@@ -33,13 +33,16 @@ class AntiVirusPluginManager extends DefaultPluginManager implements AntiVirusPl
   public function __construct(
     \Traversable $namespaces,
     CacheBackendInterface $cache_backend,
-    ModuleHandlerInterface $module_handler) {
-
-    parent::__construct(self::PLUGIN_SUBDIR,
-                        $namespaces,
-                        $module_handler,
-                        self::PLUGIN_INTERFACE,
-                        self::PLUGIN_ATTRIBUTE);
+    ModuleHandlerInterface $module_handler,
+  )
+  {
+    parent::__construct(
+      self::PLUGIN_SUBDIR,
+      $namespaces,
+      $module_handler,
+      self::PLUGIN_INTERFACE,
+      self::PLUGIN_ATTRIBUTE
+    );
   }
 
 }

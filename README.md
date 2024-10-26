@@ -15,11 +15,3 @@ extended to support different antivirus service providers and processes.
 - `antivirus`
   Integration with the file validation systems and rules to govern the scanning
   behaviour and responses.
-
-## Scanning steps
-
-Each scan compromises three steps:
-
-- Determine whether a file should be scanned.
-- Scan a file and report an outcome.
-- Populate any constraints based on the results of the scan.

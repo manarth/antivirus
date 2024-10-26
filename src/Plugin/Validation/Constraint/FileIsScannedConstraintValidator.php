@@ -2,9 +2,9 @@
 
 namespace Drupal\antivirus\Plugin\Validation\Constraint;
 
-use Drupal\antivirus_core\ScanOutcome;
-use Drupal\antivirus\Service\ScanManager;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
+use Drupal\antivirus\Service\ScanManager;
+use Drupal\antivirus_core\ScanOutcome;
 use Drupal\file\Plugin\Validation\Constraint\BaseFileConstraintValidator;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\File\Exception\UnexpectedTypeException;
@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraint;
 /**
  * Validator for files subject to an antivirus scan.
  */
-class FileIsVirusFreeConstraintValidator extends BaseFileConstraintValidator implements ContainerInjectionInterface {
+class FileIsScannedConstraintValidator extends BaseFileConstraintValidator implements ContainerInjectionInterface {
 
   /**
    * Constructor.
@@ -38,25 +38,20 @@ class FileIsVirusFreeConstraintValidator extends BaseFileConstraintValidator imp
    */
   public function validate($value, Constraint $constraint) {
     $file = $this->assertValueIsFile($value);
-    if (!$constraint instanceof FileIsVirusFreeConstraint) {
-      throw new UnexpectedTypeException($constraint, FileIsVirusFreeConstraint::class);
+    if (!$constraint instanceof FileIsNotInfectedConstraint) {
+      throw new UnexpectedTypeException($constraint, FileIsNotInfectedConstraint::class);
     }
-    /** @var \Drupal\antivirus\Plugin\Validation\Constraint\FileIsVirusFreeConstraint $constraint */
 
     $results = $this->scanManager->scan($file);
-    foreach ($results as $result) {
-      /** @var \Drupal\antivirus_core\ScanResultInterface $result */
-      switch ($result->getOutcome()) {
-        case ScanOutcome::INFECTED:
-          $this->context->addViolation($constraint->fileIsInfected);
-          break;
 
+    foreach ($results as $result) {
+      switch ($result->getOutcome()) {
         case ScanOutcome::UNCHECKED:
-          $this->context->addViolation($constraint->fileIsUnchecked);
+          $this->context->addViolation(AntiVirusConstraintMessages::FILE_IS_UNCHECKED);
           break;
 
         case ScanOutcome::UNKNOWN:
-          $this->context->addViolation($constraint->fileScanOutcomeIsUnknown);
+          $this->context->addViolation(AntiVirusConstraintMessages::FILE_SCAN_OUTCOME_IS_UNKNOWN);
           break;
       }
     }

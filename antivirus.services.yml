@@ -1,28 +1,17 @@
 ---
 services:
 
+  logger.channel.antivirus:
+    parent: logger.channel_base
+    arguments: ['AntiVirus']
+
   config.antivirus.settings:
     class: Drupal\Core\Config\Config
     factory: ['@config.factory', 'get']
     arguments:
       - 'antivirus.settings'
 
-  logger.channel.antivirus:
-    parent: logger.channel_base
-    arguments: ['AntiVirus']
-
-  antivirus.event_subscriber.file_validation_event:
-    class: Drupal\antivirus\EventSubscriber\FileValidationEventSubscriber
-    arguments:
-      - '@antivirus.scan_manager'
-      - '@validation.constraint'
-      - '@file.recursive_validator'
-    tags:
-      - { name: 'event_subscriber' }
-
   antivirus.scan_manager:
     class: Drupal\antivirus\Service\ScanManager
     arguments:
-      - '@entity_type.manager'
-      - '@event_dispatcher'
-      - '@config.antivirus.settings'
+      - '@antivirus_core.scanners'

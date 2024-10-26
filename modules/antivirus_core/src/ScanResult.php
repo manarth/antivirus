@@ -26,7 +26,7 @@ class ScanResult implements ScanResultInterface {
    *
    * @var string
    */
-  protected ?string $virusName = NULL;
+  protected ?string $virusName = null;
 
   /**
    * Constructor.
@@ -87,6 +87,27 @@ class ScanResult implements ScanResultInterface {
   public function setVirusName(string $virusName) : self {
     $this->virusName = $virusName;
     return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isInfected() : bool {
+    return $this->outcome == ScanOutcome::INFECTED;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isScanned() : bool {
+    return $this->outcome == ScanOutcome::CLEAN || $this->outcome == ScanOutcome::INFECTED;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isNotScanned() : bool {
+    return $this->outcome == ScanOutcome::UNCHECKED || $this->outcome == ScanOutcome::UNKNOWN;
   }
 
 }

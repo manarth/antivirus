@@ -35,8 +35,8 @@ class AntiVirusDrushCommands extends DrushCommands {
   /**
    * Enable antivirus scanning.
    */
-  #[CLI\Command(name: 'antivirus:enable')]
   #[CLI\Bootstrap(DrupalBootLevels::CONFIGURATION)]
+  #[CLI\Command(name: 'antivirus:enable')]
   public function enable() : void {
     $this
       ->configFactory
@@ -49,8 +49,8 @@ class AntiVirusDrushCommands extends DrushCommands {
   /**
    * Disable antivirus scanning.
    */
-  #[CLI\Command(name: 'antivirus:disable')]
   #[CLI\Bootstrap(DrupalBootLevels::CONFIGURATION)]
+  #[CLI\Command(name: 'antivirus:disable')]
   public function disable() : void {
     $this
       ->configFactory

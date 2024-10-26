@@ -2,11 +2,11 @@
 
 namespace Drupal\antivirus_ui\Form;
 
-use Drupal\antivirus_core\PluginDefinition\AntiVirusPluginInterface;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Form\SubformState;
 use Drupal\Core\Plugin\PluginFormInterface;
+use Drupal\antivirus_core\PluginDefinition\AntiVirusPluginInterface;
 
 /**
  * Form handler for editing antivirus scanner entities.

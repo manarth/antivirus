@@ -72,4 +72,28 @@ interface ScanResultInterface {
    */
   public function setVirusName(string $virusName) : self;
 
+  /**
+   * Check if the file is infected.
+   * 
+   * @return bool
+   *   TRUE if the file is infected.
+   */
+  public function isInfected() : bool;
+
+  /**
+   * Check if the file was successfully scanned.
+   * 
+   * @return bool
+   *   TRUE if the file was successfully scanned.
+   */
+  public function isScanned() : bool;
+
+  /**
+   * Check if the file was not successfully scanned.
+   * 
+   * @return bool
+   *   TRUE if the file was not successfully scanned.
+   */
+  public function isNotScanned() : bool;
+
 }
